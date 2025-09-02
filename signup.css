@@ -22,7 +22,7 @@ header {
   padding: 15px 40px;
  background: rgb(10, 36, 71);
   border-bottom: 1px solid #ddd;
-position: fixed;
+position: fixed;    
 }
 
 header .logo {
@@ -59,22 +59,37 @@ nav a:hover {
   cursor: pointer;
 }
 
-nav .sigIN {
+
+nav .sigIN a {
   padding: 6px 15px;
  font-size: 20px;
- width: 90px;
+ background-color:  rgb(52, 152, 219);
 font-weight: 600;
   border-radius: 8px;
   border: none;
   transition: 0.3s;
 }
-nav .sigIN:hover{
+nav .sigIN a:hover{
    background-color: rgb(180, 70, 70);
 box-shadow: 2px 2px 5px rgb(180, 70, 70);
 cursor: pointer;
 font-weight: 600;
 color: rgb(10, 36, 71);
 }
+nav .sigIN  {
+ background-color:  rgb(52, 152, 219);
+  border-radius: 8px;
+  border: none;
+  transition: 0.3s;
+}
+nav .sigIN :hover{
+   background-color: rgb(180, 70, 70);
+box-shadow: 2px 2px 5px rgb(180, 70, 70);
+cursor: pointer;
+}
+
+
+
 
 
 
@@ -153,7 +168,7 @@ input, select {
   font-size: 14px;
 }
 
-button {
+.sub {
   width: 100%;
           padding: 12px;
           background: rgb(52, 152, 219);
@@ -164,17 +179,17 @@ button {
           cursor: pointer;
 }
 
-button:hover {
+.sub:hover {
  background: rgb(41, 128, 185);
 }
 
-.signin-text {
+.sign-text {
   margin-top: 10px;
   font-size: 14px;
   text-align: center;
 }
 
-.signin-text a {
+.sign-text a {
   color: #0000ee;
   text-decoration: none;
 }
