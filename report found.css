@@ -1,0 +1,226 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg, #012148, #01214890), url('https://thumbs.dreamstime.com/b/child-big-magnifying-glass-looking-something-concept-question-answer-clue-child-magnifying-glass-142254934.jpg');
+            background-repeat: no-repeat;       
+            background-position: right top;  
+                   
+            
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+  /* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+ background: linear-gradient(135deg, #39aadf, #fbf307);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #012148;
+}
+
+
+
+
+
+/* Header */
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: black;
+}
+.logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+ .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+        }
+
+        .nav-links a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(99, 99, 99, 0.3);
+            transform: translateY(-2px);
+        }
+
+
+/* found Section */
+.found-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 120px 170px 50px;
+}
+.found-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  text-align: center;
+}
+.found-container h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #012148;
+}
+.subtitle {
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+.found-form .form-group {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+.found-form label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.found-form input {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+.found-form input:focus {
+  border-color: #39aadf;
+  outline: none;
+  box-shadow: 0 0 8px rgba(57,170,223,0.4);
+}
+.found-form #category {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+.found-form #category:focus {
+  border-color: #39aadf;
+  outline: none;
+  box-shadow: 0 0 8px rgba(57,170,223,0.4);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-primary {
+  background: #39aadf;
+  color: white;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background: #012148;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+
+
+/* Footer */
+.footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #39aadf;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #39aadf;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+/* Animations */
+.fade-in {
+  animation: fadeInUp 0.8s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
