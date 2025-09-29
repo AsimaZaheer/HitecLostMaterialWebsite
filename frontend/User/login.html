@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – HITEC Lost Material Portal</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="home.html" class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b3/HITEC_University_Logo.jpg">
+        HITEC Lost Material Portal
+      </a>
+       <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#report-lost">Report Lost</a></li>
+                    <li><a href="#report-found">Report Found</a></li>
+                    <li><a href="#search">Search Items</a></li>
+                    <li><a href="#claims">Claims</a></li>
+                    <li><a href="#notifications">Notifications</a></li>
+                    <li><a href="#login">Login</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+    </div>
+  </header>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <div class="login-container fade-in">
+      <h2>Login</h2>
+      <p class="subtitle">Access your account to manage reports and claims</p>
+      
+      <form class="login-form" action="dashboard.html" method="post">
+        <div class="form-group">
+          <label for="email">Email / Username</label>
+          <input type="text" id="email" name="email" placeholder="Enter your email or username" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+
+      <div class="login-links">
+        <a href="#">Forgot Password?</a>
+        <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>📧 Email: lostfound@hitec.edu.pk</p>
+                    <p>📍 Office: Main Administration Building</p>
+                    <p>📞 Phone: +92-51-5482-000</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#help">Help & FAQ</a>
+                    <a href="#about">About Us</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#contact">Contact Support</a>
+                    <a href="#feedback">Send Feedback</a>
+                    <a href="#report-issue">Report an Issue</a>
+                </div>
+  </footer>
+</body>
+</html>

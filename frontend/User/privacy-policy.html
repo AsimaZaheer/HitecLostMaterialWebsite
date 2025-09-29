@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy & Terms of Service</title>
+  <link rel="stylesheet" href="privacy-policy.css">
+</head>
+<body>
+  <header>
+    <h1>Legal Information</h1>
+    <p>Review our Privacy Policy and Terms of Service below.</p>
+  </header>
+
+  <nav>
+    <a href="#" class="active" onclick="showSection(event, 'privacy')">Privacy Policy</a>
+    <a href="#" onclick="showSection(event, 'terms')">Terms of Service</a>
+  </nav>
+
+  <div class="container">
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="active">
+      <h1>Privacy Policy:-</h1>
+      <p>We value your privacy. This section explains how we collect, use, and protect your data.</p>
+
+      <h3>What Data is Collected:</h3>
+      <ul>
+        <li>Email addresses (when you register or contact us)</li>
+        <li>Cookies and usage data (to improve user experience)</li>
+        <li>Optional profile information</li>
+      </ul>
+
+      <h3>How Your Data is Used:</h3>
+      <ul>
+        <li>To improve our services and platform performance</li>
+        <li>To send notifications and updates</li>
+        <li>For analytics and troubleshooting</li>
+      </ul>
+
+      <h3>Data Sharing Policy:</h3>
+      <p>We do not sell personal data. Limited sharing may occur with trusted third-party services (e.g., analytics, cloud hosting).</p>
+
+      <h3>User Rights:</h3>
+      <p>You may request a copy of your data or ask for deletion anytime by contacting our support team.</p>
+    </section>
+
+    <!-- Terms of Service Section -->
+    <section id="terms">
+      <h1>Terms of Service:-</h1>
+      <p>By using our platform, you agree to follow the rules and policies described here.</p>
+
+      <h3>Acceptable Use Policy:</h3>
+      <p>Users must not misuse the service for illegal activities or harmful behavior.</p>
+
+      <h3>Account & Security Rules:</h3>
+      <p>You are responsible for maintaining the confidentiality of your account credentials.</p>
+
+      <h3>Payments & Refunds:</h3>
+      <p>(If applicable) Payments are final unless otherwise stated in our refund policy.</p>
+
+      <h3>Limitation of Liability:</h3>
+      <p>We are not liable for damages resulting from misuse, downtime, or third-party issues.</p>
+
+      <h3>Termination of Service:</h3>
+      <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy;  2025 HITEC Lost Material Portal. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showSection(event, id) {
+      const sections = document.querySelectorAll("section");
+      const links = document.querySelectorAll("nav a");
+
+      sections.forEach(sec => sec.classList.remove("active"));
+      links.forEach(link => link.classList.remove("active"));
+
+      document.getElementById(id).classList.add("active");
+      event.target.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>

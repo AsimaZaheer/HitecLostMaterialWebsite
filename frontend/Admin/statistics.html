@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>System Statistics & Reports - HITEC Lost & Found Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #7209b7;
+      --success: #28a745;
+      --warning: #ffc107;
+      --danger: #e63946;
+      --info: #17a2b8;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+      --white: #ffffff;
+      --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Styles */
+    .header {
+      background-color: var(--white);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: var(--transition);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: bold;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: rotate(10deg);
+      background-color: var(--primary-dark);
+    }
+
+    .website-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .date-time {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #555;
+      position: relative;
+      transition: var(--transition);
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    .icon-btn:hover {
+      color: var(--primary);
+      background-color: rgba(67, 97, 238, 0.1);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: var(--danger);
+      color: var(--white);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Main Layout */
+    .main-container {
+      display: flex;
+      margin-top: 70px;
+      flex: 1;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: 250px;
+      background-color: var(--white);
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      height: calc(100vh - 70px);
+      position: fixed;
+      overflow-y: auto;
+      padding: 20px 0;
+      transition: transform 0.3s ease;
+      z-index: 99;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      border-left: 4px solid transparent;
+      transition: var(--transition);
+      margin-bottom: 5px;
+    }
+
+    .menu-item:hover, .menu-item.active {
+      background-color: rgba(67, 97, 238, 0.1);
+      border-left: 4px solid var(--primary);
+      color: var(--primary);
+      padding-left: 25px;
+    }
+
+    .menu-item i {
+      width: 20px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .menu-item:hover i {
+      transform: scale(1.1);
+    }
+
+    /* Content Area */
+    .content {
+      flex: 1;
+      padding: 20px;
+      margin-left: 250px;
+      transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(120deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(30deg);
+    }
+
+    .welcome {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      position: relative;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      opacity: 0.9;
+      position: relative;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Summary Cards */
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      color: #7f8c8d;
+      font-weight: 500;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .card-content {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .card.lost .card-icon { background: rgba(231,76,60,0.2); color: #e74c3c; }
+    .card.found .card-icon { background: rgba(46,204,113,0.2); color: #2ecc71; }
+    .card.claims .card-icon { background: rgba(52,152,219,0.2); color: #3498db; }
+    .card.approved .card-icon { background: rgba(155,89,182,0.2); color: #9b59b6; }
+    .card.pending .card-icon { background: rgba(241,196,15,0.2); color: #f1c40f; }
+
+    /* Filter Section */
+    .filter-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .filter-title {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .filter-options {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Charts Section */
+    .charts-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-container {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .chart-container:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .chart-title {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+      text-align: center;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* Table Section */
+    .table-section {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      overflow-x: auto;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .table-section:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .table-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e0e6ed;
+    }
+
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    tr:nth-child(even) {
+      background: #fafbfc;
+    }
+
+    tr:hover {
+      background: #f0f8ff;
+    }
+
+    /* Export Section */
+    .export-section {
+      display: flex;
+      justify-content: flex-end;
+      margin: 1rem 0;
+    }
+
+    .export-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .export-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer {
+      background: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      margin-top: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: #333;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      
+      .content {
+        margin-left: 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .charts-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark);
+      padding: 5px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .menu-toggle:hover {
+      background-color: var(--light);
+    }
+
+    @media (max-width: 768px) {
+      .header-right {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .summary-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .filter-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .filter-options {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .summary-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .website-name {
+        font-size: 1rem;
+      }
+      
+      .card {
+        padding: 1rem;
+      }
+      
+      .card-content {
+        font-size: 1.5rem;
+      }
+      
+      .filter-options {
+        flex-direction: column;
+      }
+      
+      .filter-btn {
+        width: 100%;
+      }
+    }
+
+    /* Dark mode toggle */
+    .dark-mode-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--gray);
+      transition: var(--transition);
+    }
+
+    .dark-mode-toggle:hover {
+      color: var(--primary);
+    }
+
+    /* Search box */
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-color: var(--light);
+      border-radius: 20px;
+      padding: 5px 15px;
+      margin: 0 10px;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      padding: 8px;
+      width: 150px;
+      outline: none;
+    }
+
+    .search-box button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="logo-container">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">H</div>
+      <div class="website-name">HITEC Lost Material Portal</div>
+    </div>
+    
+    <div class="header-right">
+      <div class="search-box">
+        <input type="text" placeholder="Search..." aria-label="Search">
+        <button type="submit" aria-label="Search button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="date-time" id="dateTime">Loading...</div>
+      <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="header-icons">
+        <button class="icon-btn" aria-label="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </button>
+        <button class="icon-btn" aria-label="User profile">
+          <i class="fas fa-user-circle"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <ul class="sidebar-menu">
+        <li class="menu-item">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </li>
+        <li class="menu-item">
+          <i class="fas fa-file-alt"></i>
+          <span>Reports</span>
+        </li>
+        <li class="menu-item">
+          <i class="fas fa-tasks"></i>
+          <span>Claims Management</span>
+        </li>
+        <li class="menu-item">
+          <i class="fas fa-bell"></i>
+          <span>Notifications</span>
+        </li>
+        <li class="menu-item">
+          <i class="fas fa-search"></i>
+          <span>Search & Filter</span>
+        </li>
+        <li class="menu-item active">
+          <i class="fas fa-chart-bar"></i>
+          <span>Statistics</span>
+        </li>
+        <li class="menu-item">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </li>
+        <li class="menu-item">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="content">
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1 class="welcome">System Statistics & Reports</h1>
+        <p class="tagline">Track the performance of the Lost & Found Portal</p>
+      </section>
+
+      <div class="container">
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+          <div class="card lost">
+            <div class="card-header">
+              <div class="card-title">Total Lost Items Reported</div>
+              <div class="card-icon"><i class="fas fa-exclamation-circle"></i></div>
+            </div>
+            <div class="card-content">0</div>
+          </div>
+          <div class="card found">
+            <div class="card-header">
+              <div class="card-title">Total Found Items Reported</div>
+              <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+            </div>
+            <div class="card-content">0</div>
+          </div>
+          <div class="card claims">
+            <div class="card-header">
+              <div class="card-title">Total Claims Submitted</div>
+              <div class="card-icon"><i class="fas fa-tasks"></i></div>
+            </div>
+            <div class="card-content">0</div>
+          </div>
+          <div class="card approved">
+            <div class="card-header">
+              <div class="card-title">Total Approved Claims</div>
+              <div class="card-icon"><i class="fas fa-clipboard-check"></i></div>
+            </div>
+            <div class="card-content">0</div>
+          </div>
+          <div class="card pending">
+            <div class="card-header">
+              <div class="card-title">Pending Reports</div>
+              <div class="card-icon"><i class="fas fa-clock"></i></div>
+            </div>
+            <div class="card-content">0</div>
+          </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="filter-section">
+          <div class="filter-title">Filter by:</div>
+          <div class="filter-options">
+            <button class="filter-btn active" data-filter="weekly">Weekly</button>
+            <button class="filter-btn" data-filter="monthly">Monthly</button>
+            <button class="filter-btn" data-filter="custom">Custom Range</button>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-section">
+          <div class="chart-container">
+            <h3 class="chart-title"><i class="fas fa-chart-bar"></i> Lost vs Found Items</h3>
+            <canvas id="barChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Reports by Category</h3>
+            <canvas id="pieChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3 class="chart-title"><i class="fas fa-chart-line"></i> Reports Trend</h3>
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Export Button -->
+        <div class="export-section">
+          <button class="export-btn" id="exportBtn"><i class="fas fa-download"></i>Download Report (PDF)</button>
+        </div>
+
+        <!-- Table -->
+        <div class="table-section">
+          <h3 class="table-title"><i class="fas fa-table"></i> Monthly Breakdown</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Lost Items</th>
+                <th>Found Items</th>
+                <th>Claims Submitted</th>
+                <th>Claims Approved</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#" class="footer-link">About Us</a>
+      <a href="#" class="footer-link">Privacy Policy</a>
+      <a href="#" class="footer-link">Terms & Conditions</a>
+      <a href="#" class="footer-link">Contact Support</a>
+      <a href="#" class="footer-link">HITEC Official Website</a>
+    </div>
+    <div class="copyright">
+      &copy; 2023 HITEC Lost Material Portal. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Update Date and Time
+    function updateDateTime() {
+      const now = new Date();
+      const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      document.getElementById('dateTime').textContent = now.toLocaleDateString('en-US', options);
+    }
+    
+    setInterval(updateDateTime, 60000);
+    updateDateTime();
+    
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('active');
+    });
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+      }
+    });
+    
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const icon = darkModeToggle.querySelector('i');
+      if (document.body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        // You would need to add dark mode styles
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+
+    // Export Button Functionality
+    document.getElementById('exportBtn').addEventListener('click', function() {
+      // In a real application, this would generate and download a PDF report
+      alert('PDF report download functionality would be implemented here. In a real application, this would generate a comprehensive report with all statistics and charts.');
+    });
+
+    document.addEventListener("DOMContentLoaded", function(){
+      // ------------------------
+      // 1. Store all data in JS
+      // ------------------------
+      const statsData = {
+        summary: { lost:120, found:80, claims:50, approved:45, pending:10 },
+        monthlyBreakdown: [
+          {month:"September 2023", lost:35, found:20, claims:12, approved:10},
+          {month:"August 2023", lost:42, found:25, claims:15, approved:14},
+          {month:"July 2023", lost:28, found:18, claims:10, approved:9},
+          {month:"June 2023", lost:25, found:15, claims:8, approved:7},
+          {month:"May 2023", lost:30, found:22, claims:11, approved:10}
+        ],
+        charts: {
+          weekly: {
+            bar: { labels:["Week 1","Week 2","Week 3","Week 4"], lost:[10,15,12,8], found:[6,10,9,7] },
+            line: { labels:["W1","W2","W3","W4"], lost:[12,15,18,10], found:[8,9,12,11] }
+          },
+          monthly: {
+            bar: { labels:["Jan","Feb","Mar","Apr"], lost:[28,32,35,30], found:[15,18,20,16] },
+            line: { labels:["Jan","Feb","Mar","Apr","May","Jun"], lost:[28,32,35,30,31,38], found:[15,18,20,16,19,22] }
+          },
+          custom: {
+            bar: { labels:["Custom1","Custom2","Custom3"], lost:[20,25,18], found:[10,15,12] },
+            line: { labels:["C1","C2","C3","C4"], lost:[18,20,15,22], found:[12,14,10,16] }
+          },
+          pie: { labels:["Books","Electronics","ID Cards","Clothing","Others"], data:[30,25,20,15,10] }
+        }
+      };
+
+      // ------------------------
+      // 2. Render Summary Cards
+      // ------------------------
+      document.querySelector(".card.lost .card-content").innerText = statsData.summary.lost;
+      document.querySelector(".card.found .card-content").innerText = statsData.summary.found;
+      document.querySelector(".card.claims .card-content").innerText = statsData.summary.claims;
+      document.querySelector(".card.approved .card-content").innerText = statsData.summary.approved;
+      document.querySelector(".card.pending .card-content").innerText = statsData.summary.pending;
+
+      // ------------------------
+      // 3. Render Table
+      // ------------------------
+      const tableBody = document.querySelector(".table-section tbody");
+      statsData.monthlyBreakdown.forEach(row=>{
+        tableBody.innerHTML += `
+          <tr>
+            <td>${row.month}</td>
+            <td>${row.lost}</td>
+            <td>${row.found}</td>
+            <td>${row.claims}</td>
+            <td>${row.approved}</td>
+          </tr>
+        `;
+      });
+
+      // ------------------------
+      // 4. Charts Initialization
+      // ------------------------
+      const barCtx=document.getElementById("barChart").getContext("2d");
+      const pieCtx=document.getElementById("pieChart").getContext("2d");
+      const lineCtx=document.getElementById("lineChart").getContext("2d");
+
+      let barChart=new Chart(barCtx,{ 
+        type:"bar",
+        data:{ 
+          labels: statsData.charts.weekly.bar.labels,
+          datasets:[
+            {label:"Lost Items",data:statsData.charts.weekly.bar.lost,backgroundColor:"rgba(231,76,60,0.7)",borderRadius:5},
+            {label:"Found Items",data:statsData.charts.weekly.bar.found,backgroundColor:"rgba(46,204,113,0.7)",borderRadius:5}
+          ]
+        },
+        options:{
+          responsive:true,
+          scales:{
+            y:{
+              beginAtZero:true,
+              grid: {
+                drawBorder: false
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+
+      let pieChart=new Chart(pieCtx,{ 
+        type:"pie",
+        data:{ 
+          labels:statsData.charts.pie.labels,
+          datasets:[{
+            data:statsData.charts.pie.data,
+            backgroundColor:["#3498db","#9b59b6","#34495e","#f1c40f","#e67e22"],
+            borderWidth:0
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                boxWidth: 15,
+                padding: 15
+              }
+            }
+          },
+          cutout: '50%'
+        }
+      });
+
+      let lineChart=new Chart(lineCtx,{ 
+        type:"line",
+        data:{ 
+          labels:statsData.charts.weekly.line.labels,
+          datasets:[
+            {
+              label:"Lost Items",
+              data:statsData.charts.weekly.line.lost,
+              borderColor:"#e74c3c",
+              backgroundColor:"rgba(231,76,60,0.1)",
+              fill:true,
+              tension: 0.4
+            },
+            {
+              label:"Found Items",
+              data:statsData.charts.weekly.line.found,
+              borderColor:"#2ecc71",
+              backgroundColor:"rgba(46,204,113,0.1)",
+              fill:true,
+              tension: 0.4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                drawBorder: false
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+
+      // ------------------------
+      // 5. Filter Buttons
+      // ------------------------
+      document.querySelectorAll(".filter-btn").forEach(btn=>{
+        btn.addEventListener("click",function(){
+          document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+          this.classList.add("active");
+          let type=this.dataset.filter;
+
+          barChart.data.labels = statsData.charts[type].bar.labels;
+          barChart.data.datasets[0].data = statsData.charts[type].bar.lost;
+          barChart.data.datasets[1].data = statsData.charts[type].bar.found;
+
+          lineChart.data.labels = statsData.charts[type].line.labels;
+          lineChart.data.datasets[0].data = statsData.charts[type].line.lost;
+          lineChart.data.datasets[1].data = statsData.charts[type].line.found;
+
+          barChart.update();
+          lineChart.update();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

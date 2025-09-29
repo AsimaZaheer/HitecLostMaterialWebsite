@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HITEC Lost Material Portal</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="home.html" class="logo"><img src="https://upload.wikimedia.org/wikipedia/en/b/b3/HITEC_University_Logo.jpg">HITEC Lost Material Portal</a>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="report-lost.html">Report Lost</a></li>
+                    <li><a href="report-found.html">Report Found</a></li>
+                    <li><a href="search.html">Search Items</a></li>
+                    <li><a href="#claims">Claims</a></li>
+                    <li><a href="#notifications">Notifications</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Lost something? Found something? Report it here!</h1>
+            <p>This portal helps students & staff to quickly report and recover lost items with transparency and efficiency.</p>
+            <div class="cta-buttons">
+                <a href="report-lost.html" class="btn btn-primary">Report Lost Item</a>
+                <a href="report-found.html" class="btn btn-secondary">Report Found Item</a>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for lost items... (e.g. wallet, phone, keys)" class="search-input">
+                    <button type="button" class="search-btn" onclick="performSearch()">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </div>
+                <div class="search-suggestions">
+                    <span class="suggestion-tag" onclick="quickSearch('wallet')">Wallet</span>
+                    <span class="suggestion-tag" onclick="quickSearch('phone')">Phone</span>
+                    <span class="suggestion-tag" onclick="quickSearch('keys')">Keys</span>
+                    <span class="suggestion-tag" onclick="quickSearch('laptop')">Laptop</span>
+                    <span class="suggestion-tag" onclick="quickSearch('bag')">Bag</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Why This Portal?</h2>
+            <div class="about-content">
+                <p>Instead of using WhatsApp groups or scattered announcements, this system provides a centralized, organized way to manage all lost & found items at HITEC. Our platform ensures transparency, quick recovery, and maintains a proper record of all items.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <span class="step-icon">📝</span>
+                    <h3>Report Lost/Found Item</h3>
+                    <p>Simply fill out our easy form with item details, location, and contact information.</p>
+                </div>
+                <div class="step fade-in">
+                    <span class="step-icon">✅</span>
+                    <h3>Admin Verification</h3>
+                    <p>Our admin team verifies and approves your report to ensure authenticity.</p>
+                </div>
+                <div class="step fade-in">
+                    <span class="step-icon">🔍</span>
+                    <h3>Search for Items</h3>
+                    <p>Browse through our organized database to find your lost items quickly.</p>
+                </div>
+                <div class="step fade-in">
+                    <span class="step-icon">🎉</span>
+                    <h3>Claim & Recovery</h3>
+                    <p>Contact the finder or admin to safely recover your lost item.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="cards">
+                <div class="card">
+                    <span class="card-icon">📢</span>
+                    <h3>Report Lost Item</h3>
+                    <p>Lost something on campus? Report it here and let others help you find it.</p>
+                    <a href="report-lost.html" class="btn btn-primary">Report Now</a>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>Report Found Item</h3>
+                    <p>Found something? Help a fellow student by reporting it here.</p>
+                    <a href="report-found.html" class="btn btn-primary">Report Found</a>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🔎</span>
+                    <h3>Search Items</h3>
+                    <p>Browse through our database of lost and found items.</p>
+                    <a href="search.html" class="btn btn-primary">Search Now</a>
+                </div>
+                <div class="card">
+                    <span class="card-icon">📋</span>
+                    <h3>Manage Claims</h3>
+                    <p>Track your reported items and manage your claims easily.</p>
+                    <a href="claim.html" class="btn btn-primary">View Claims</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Notifications Section -->
+    <section class="notifications">
+        <div class="container">
+            <h2 class="section-title">Recent Notifications</h2>
+            <div class="notification-item">
+                <strong>📌 Wallet Found:</strong> A brown leather wallet found near Library on 25th August. Contact admin for details.
+            </div>
+            <div class="notification-item">
+                <strong>📌 Phone Lost:</strong> iPhone 13 Pro lost in Engineering Block cafeteria on 24th August. If found, please report.
+            </div>
+            <div class="notification-item">
+                <strong>📌 Keys Returned:</strong> Car keys with HITEC keychain successfully returned to owner on 23rd August.
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="156">0</span>
+                    <span class="stat-label">Lost Items Reported</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="89">0</span>
+                    <span class="stat-label">Found Items</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="67">0</span>
+                    <span class="stat-label">Items Returned</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="92">0</span>
+                    <span class="stat-label">Happy Students</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>📧 Email: dsa@hitecuni.edu.pk</p>
+                    <p>📍 Office: Main Administration Building</p>
+                    <p>📞 Phone: (051) 4908146</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="FAQ.html">Help & FAQ</a>
+                    <a href="About.html">About Us</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="privacy-policy.html">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="Contact Support.html">Contact Support</a>
+                    <a href="#feedback">Send Feedback</a>
+                    <a href="Report Issue.html">Report an Issue</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HITEC Lost Material Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search Functionality
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                // Add search animation
+                const searchBtn = document.querySelector('.search-btn');
+                searchBtn.innerHTML = '<span style="animation: spin 1s linear infinite;">⏳</span>';
+                
+                // Simulate search (replace with actual search logic)
+                setTimeout(() => {
+                    alert(`Searching for: "${query}"\n\nThis will redirect to search results page with your query.`);
+                    searchBtn.innerHTML = '<span class="search-icon">🔍</span>';
+                }, 1000);
+            } else {
+                searchInput.focus();
+                searchInput.style.border = '2px solid #ff6b6b';
+                setTimeout(() => {
+                    searchInput.style.border = 'none';
+                }, 2000);
+            }
+        }
+
+        function quickSearch(item) {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = item;
+            performSearch();
+        }
+
+        // Enter key functionality for search
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Search input focus effects
+            searchInput.addEventListener('focus', () => {
+                document.querySelector('.search-box').style.transform = 'translateY(-5px)';
+                document.querySelector('.search-box').style.boxShadow = '0 15px 40px rgba(0,0,0,0.3)';
+            });
+
+            searchInput.addEventListener('blur', () => {
+                if (!searchInput.value) {
+                    document.querySelector('.search-box').style.transform = 'translateY(0)';
+                    document.querySelector('.search-box').style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+                }
+            });
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu after clicking
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Animated Counter for Statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    counter.textContent = Math.floor(current);
+                    
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 16);
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger counter animation when stats section is visible
+                    if (entry.target.closest('.stats')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.step, .card, .notification-item, .stat-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(57, 170, 223, 0.3)';
+            } else {
+                header.style.background = '#ffffff';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Add floating animation to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) rotateX(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0)';
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+                
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>

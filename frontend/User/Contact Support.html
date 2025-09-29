@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Support – HITEC Lost Material Portal</title>
+  <link rel="stylesheet" href="Contact Support.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="home.html" class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b3/HITEC_University_Logo.jpg">
+        HITEC Lost Material Portal
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="report-lost.html">Report Lost</a></li>
+          <li><a href="report-found.html">Report Found</a></li>
+          <li><a href="search.html">Search Items</a></li>
+          <li><a href="claims.html">Claims</a></li>
+          <li><a href="notifications.html">Notifications</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="intro-content fade-in">
+      <h2>Contact Support</h2>
+      <p class="subtitle">
+        Need help? <br> Our support team is here to assist you.  <br>
+        Please use the form below or reach out through email/phone.
+      </p>
+      <p class="support-hours">Support available: 9:00 AM – 3:00 PM (Mon–Fri)</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact-section">
+    <div class="contact-container fade-in">
+      <h3>Send Us Message</h3>
+      <form class="contact-form" onsubmit="showMessage(event)">
+        <div class="form-group">
+          <label for="name">Name </label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email </label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject </label>
+          <select id="subject" name="subject" required>
+            <option value="">-- Select a subject --</option>
+            <option value="general">General Query</option>
+            <option value="technical">Technical Support</option>
+            <option value="account">Account/Login Issue</option>
+            <option value="payment">Payment/Billing</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message </label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+      </form>
+      <p id="confirmation" class="confirmation-message"></p>
+    </div>
+  </section>
+
+  <!-- Live Chat (Optional) -->
+  <section class="chat-section">
+    <div class="chat-container fade-in">
+      <h3>Need Quick Help?</h3>
+      <button class="btn btn-chat">Start Live Chat</button>
+     
+    </div>
+  </section>
+
+  
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+      <h3>Direct Contact</h3>
+      <p>📧 Email: info@hitecuni.edu.pk</p>
+      <p>📞 Helpline: 051 4908146</p>
+      <p>⏱ Average response time: 12 hours</p>
+    </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="#support">Support</a>
+          <a href="#help">Help & FAQ</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>📧 info@hitecuni.edu.pk</p>
+          <p>📞 051 4908146</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HITEC Lost Material Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showMessage(event) {
+      event.preventDefault();
+      document.getElementById("confirmation").innerText = 
+        "✅ Thank you for contacting us. Our support team will respond within 24 hours.";
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>

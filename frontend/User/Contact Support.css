@@ -1,0 +1,234 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: black;
+}
+.logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2px;
+}
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover {
+  background: rgba(99,99,99,0.2);
+  transform: translateY(-2px);
+}
+
+/* Intro Section */
+.intro-section {
+    height: 600px;
+  padding: 140px 20px 40px;
+  text-align: center;
+ 
+  background: linear-gradient(135deg, #012148, #01214890), 
+              url("https://thumbs.dreamstime.com/b/child-big-magnifying-glass-looking-something-concept-question-answer-clue-child-magnifying-glass-142254934.jpg");
+              background-repeat: no-repeat;
+  background-position: right center ;
+  background-size: contain;
+
+}
+.intro-section h2 {
+    text-align: left;
+  font-size: 40px;
+  color: white;
+  margin-top: 95px;
+  margin-left: 40px;
+}
+.subtitle {
+    text-align: left;
+   margin-top: 20px;
+  margin-left: 40px;
+  font-size: 25px;
+  font-weight: 450;
+
+  color: white;
+}
+.support-hours {
+    text-align: left;
+ margin-top: 10px;
+  margin-left: 40px;
+  color: rgb(228, 40, 53);
+  font-size: 0.95rem;
+}
+
+/* Contact Form */
+.contact-section {
+      background: rgb(217, 225, 225); 
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+ 
+}
+.contact-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+.contact-container h3 {
+    font-size: 30px;
+    text-align: center;
+  margin-bottom: 1rem;
+  color: #012148;
+}
+.contact-form .form-group {
+  margin-bottom: 1.2rem;
+}
+.contact-form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #39aadf;
+  outline: none;
+  box-shadow: 0 0 8px rgba(57,170,223,0.4);
+}
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+    margin-bottom: 10px;
+  flex: 1;
+  padding: 0.9rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-primary {
+  background: #39aadf;
+  color: white;
+}
+.btn-primary:hover {
+  background: #012148;
+}
+.btn-secondary {
+  background: #ddd;
+}
+.confirmation-message {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: green;
+  text-align: center;
+}
+
+/* Chat Section */
+.chat-section {
+    margin-top: 0px;
+     background: rgb(217, 225, 225);
+  text-align: center;
+
+}
+.btn-chat {
+  background: #39aadf;
+  color: white;
+}
+.btn-chat:hover {
+  background: #012148;
+}
+
+
+
+
+/* Footer */
+.footer {
+  background: #2c3e50;
+  color: white;
+  padding: 3rem 0 1rem;
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 0 20px;
+}
+.footer-section h3 {
+  margin-bottom: 1rem;
+  color: #39aadf;
+}
+.footer-section a {
+  display: block;
+  color: #bdc3c7;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+.footer-section a:hover {
+  color: #39aadf;
+}
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #34495e;
+  padding-top: 1rem;
+  color: #bdc3c7;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeInUp 0.8s ease;
+}
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue – HITEC Lost Material Portal</title>
+  <link rel="stylesheet" href="Report Issue.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="home.html" class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b3/HITEC_University_Logo.jpg">
+        HITEC Lost Material Portal
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="report-lost.html">Report Lost</a></li>
+          <li><a href="report-found.html">Report Found</a></li>
+          <li><a href="search.html">Search Items</a></li>
+          <li><a href="claims.html">Claims</a></li>
+          <li><a href="notifications.html">Notifications</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Report Issue Section -->
+  <section class="issue-section">
+    <div class="issue-container fade-in">
+      <h2>Report an Issue</h2>
+      <p class="subtitle">Please use this form to report any bugs, errors, or issues you encounter.</p>
+
+      <form class="issue-form">
+        <div class="form-group">
+          <label for="name">Name (Optional)</label>
+          <input type="text" id="name" placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address (Required)</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="title">Issue Title</label>
+          <input type="text" id="title" placeholder="E.g. Login button not working" required>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category / Type of Issue</label>
+          <select id="category" required>
+            <option value="">-- Choose Category --</option>
+            <option>UI / Design Problem</option>
+            <option>Login / Account Issue</option>
+            <option>Payment / Transaction Issue</option>
+            <option>Performance (Slow / Crash)</option>
+            <option>Bug / Error Message</option>
+            <option>Security Issue</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Priority Level</label>
+          <select id="priority" required>
+            <option value="">-- Select Priority --</option>
+            <option>Low – Minor issue</option>
+            <option>Medium – Affects some functionality</option>
+            <option>High – Critical, prevents use</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" rows="4" placeholder="Detailed explanation with steps to reproduce" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="steps">Steps to Reproduce</label>
+          <textarea id="steps" rows="3" placeholder="E.g. Step 1: Open dashboard → Step 2: Click on…"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="expected">Expected Behavior</label>
+          <textarea id="expected" rows="3" placeholder="What should happen instead?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="file">Upload Screenshot / File (Optional)</label>
+          <input type="file" id="file" accept="image/*,.txt,.log,.pdf">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Issue</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Contact Information</h3>
+          <p>📧 Email: info@hitecuni.edu.pk. </p>
+          <p>📍 Office: Main Administration Building</p>
+          <p>📞 Phone: 051 4908146 </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="#help">Help & FAQ</a>
+          <a href="#about">About Us</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <a href="#contact">Contact Support</a>
+          <a href="#feedback">Send Feedback</a>
+          <a href="#report-issue">Report an Issue</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HITEC Lost Material Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.querySelector(".issue-form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("✅ Thank you for reporting this issue. Our support team will review and get back to you soon.");
+      form.reset();
+    });
+  </script>
+</body>
+</html>

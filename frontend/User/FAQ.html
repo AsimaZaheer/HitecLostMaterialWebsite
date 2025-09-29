@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & FAQ</title>
+  <link rel="stylesheet" href="FAQ.CSS">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Help & FAQ</h1>
+    <p>Find answers to the most common questions or get quick help.</p>
+  </header>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="faqSearch" placeholder="Search your question here…">
+  </div>
+
+  <!-- FAQ Categories -->
+  <div class="faq-category">
+    <h2>Account & Login</h2>
+    <div class="faq-item">
+      <div class="faq-question">How do I create an account?</div>
+      <div class="faq-answer">Click on "Sign Up" and fill in your details to create an account.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">I forgot my password, how to reset it?</div>
+      <div class="faq-answer">Click on “Forgot Password” on the login page and follow the steps.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I update my profile information?</div>
+      <div class="faq-answer">Yes, go to your profile settings and edit the information as needed.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>Using the Platform / Services</h2>
+    <div class="faq-item">
+      <div class="faq-question">How do I post a report?</div>
+      <div class="faq-answer">Navigate to “Report an Issue” page and fill out the required fields.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How to search lost/found items?</div>
+      <div class="faq-answer">Use the search bar in the dashboard to find reported items.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I edit or delete my submission?</div>
+      <div class="faq-answer">Yes, you can manage your reports from your account dashboard.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>Notifications & Support</h2>
+    <div class="faq-item">
+      <div class="faq-question">Will I receive notifications for updates?</div>
+      <div class="faq-answer">Yes, you’ll get notified via email and in-app alerts.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How do I contact support?</div>
+      <div class="faq-answer">Go to the "Contact Support" page and submit your query.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>Privacy & Security</h2>
+    <div class="faq-item">
+      <div class="faq-question">Is my data safe?</div>
+      <div class="faq-answer">Yes, we follow strict security protocols to protect your data.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you share my information with others?</div>
+      <div class="faq-answer">No, your information remains private and secure.</div>
+    </div>
+  </div>
+
+  <div class="faq-category">
+    <h2>General Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">How does this platform work?</div>
+      <div class="faq-answer">Users can report, search, and claim lost/found items through this system.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Is it free to use?</div>
+      <div class="faq-answer">Yes, our platform is completely free for all users.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Which browsers/devices are supported?</div>
+      <div class="faq-answer">Our platform supports all modern browsers and mobile devices.</div>
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-links">
+    <h3>Quick Links</h3>
+    <a href="#">Contact Support</a>
+    <a href="#">Report an Issue</a>
+    <a href="#">Send Feedback</a>
+  </div>
+
+  <!-- Still Need Help -->
+  <div class="cta-box">
+    <h3>Still Need Help?</h3>
+    <p>Didn’t find what you’re looking for? Contact our support team.</p>
+    <a href="#">Go to Support Page</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <a href="#">Support</a> | 
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms of Service</a>
+    </p>
+    <p>&copy; 2025 HITEC Lost Material Portal. All rights reserved.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // FAQ Accordion
+    const questions = document.querySelectorAll(".faq-question");
+    questions.forEach(q => {
+      q.addEventListener("click", () => {
+        q.classList.toggle("active");
+        let answer = q.nextElementSibling;
+        answer.style.display = (answer.style.display === "block") ? "none" : "block";
+      });
+    });
+
+    // Search Function
+    const searchInput = document.getElementById("faqSearch");
+    searchInput.addEventListener("keyup", function() {
+      let filter = searchInput.value.toLowerCase();
+      let items = document.querySelectorAll(".faq-item");
+      items.forEach(item => {
+        let question = item.querySelector(".faq-question").textContent.toLowerCase();
+        let answer = item.querySelector(".faq-answer").textContent.toLowerCase();
+        if (question.includes(filter) || answer.includes(filter)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
